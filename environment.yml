@@ -1,0 +1,11 @@
+name: yunet
+channels:
+  - pytorch-lts
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.8
+  - pytorch
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.1
