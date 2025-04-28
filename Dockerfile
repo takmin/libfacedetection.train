@@ -10,7 +10,9 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &
 ENV PATH /opt/miniconda3/bin:$PATH
 
 # Create the environement
-COPY environment.yml .
+COPY ./ /root/yunet/libfracedetection.train
+WORKDIR /root/yunet/libfracedetection.train
+
 RUN pip install --upgrade pip && \
     conda update -n base -c defaults conda && \
     conda env create -n yunet -f environment.yml && \
@@ -21,18 +23,15 @@ ENV CONDA_DEFAULT_ENV yunet && \
     PATH /opt/conda/envs/yunet/bin:$PATH
 
 # Install mmcv
+WORKDIR /root/yunet/
+RUN git clone https://github.com/open-mmlab/mmcv.git
 # RUN pip install mmcv-full==1.6.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html
-# RUN git clone https://github.com/open-mmlab/mmcv.git
+
 # WORKDIR /root/yunet/mmcv
 # RUN git checkout v1.6.0
 # RUN FORCE_CUDA=1 pip install -r requirements/optional.txt && \
 #     MMCV_WITH_OPS=1 pip install -v -e .
 #     python .dev_scripts/check_installation.py > check_installation.txt
-
-WORKDIR /root/yunet
-
-# Install libfacedetection
-RUN git clone https://github.com/takuya/libfacedetection.train.git
 
 WORKDIR /root/yunet/libfacedetection.train
 
