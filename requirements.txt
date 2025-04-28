@@ -2,9 +2,9 @@ cython==0.29.33
 numpy==1.23.0
 onnxruntime
 onnx
-scipy
-tqdm
+scipy==1.7.3
+tqdm==4.62.3
 terminaltables
-mmpycocotools
+mmpycocotools==12.0.3
 future
 tensorboard
